@@ -1,19 +1,29 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
+  // Hover effect for project buttons
   const buttons = document.querySelectorAll('.btn');
-
   buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault(); 
-      const link = button.getAttribute('href');
-      window.open(link, 'projectTab'); // Opens all links in the same tab group
+    button.addEventListener('mouseover', () => {
+      button.style.backgroundColor = '#0056b3';
+    });
+    button.addEventListener('mouseout', () => {
+      button.style.backgroundColor = '#007BFF';
     });
   });
 
-  // Smooth scrolling for internal links
+  // Handle anchor click events:
+  // If the anchor has the 'btn' class, open the link in a new tab.
+  // Otherwise, perform smooth scrolling for internal links.
   const anchors = document.querySelectorAll('a[href^="#"]');
   anchors.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      // For project buttons, open in a new tab.
+      if (this.classList.contains('btn')) {
+        e.preventDefault();
+        window.open(this.getAttribute('href'), '_blank');
+        return;
+      }
+      // For other internal anchors, perform smooth scrolling.
       e.preventDefault();
       const targetID = this.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetID);
