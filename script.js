@@ -1,17 +1,16 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-  // Hover effect for project buttons
   const buttons = document.querySelectorAll('.btn');
+
   buttons.forEach(button => {
-    button.addEventListener('mouseover', () => {
-      button.style.backgroundColor = '#0056b3';
-    });
-    button.addEventListener('mouseout', () => {
-      button.style.backgroundColor = '#007BFF';
+    button.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      const link = button.getAttribute('href');
+      window.open(link, 'projectTab'); // Opens all links in the same tab group
     });
   });
 
-  // Smooth scrolling for internal anchor links
+  // Smooth scrolling for internal links
   const anchors = document.querySelectorAll('a[href^="#"]');
   anchors.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -24,4 +23,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
